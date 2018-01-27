@@ -98,13 +98,16 @@ if ($conn->connect_error) {
 }  
   
 $sql = "INSERT INTO `Discounts` (`discount`, `title`, `intr`, `info`, `btime`, `etime`) VALUES ('{$discount}', '{$title}', '{$intr}', '{$info}', '{$btime}','{$etime}')";
-  
+$sql1 = "INSERT INTO `Notices` (`nid`, `uid`, `title`, `info`, `ntime`) VALUES (NULL, '0', '优惠通知', '你有新的优惠{$title}', '{$dates}')";
 
-if($conn->query($sql)==true){
+$conn->query("SET AUTOCOMMIT=0");
+if($conn->query($sql)==true&&$conn->query($sql1)==true){
+	$conn->commit();
 	$arr['status'] = 1;
 	$arr['msg']   = '提交成功';
 	echo json_encode($arr);
 }else{
+	$conn->rollback();
 	$arr['status'] = 0;
 	$arr['msg']   = '提交失败';
 	echo json_encode($arr);

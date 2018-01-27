@@ -3,11 +3,10 @@
 <file name="AddCars.php" server="119.29.145.13//var/www/html/pro/" local="131611071194113966" remote="131611071820000000" Dst="0" />
 <file name="AddCars.php" server="119.29.145.13" local="131611073888984958" remote="131611073880000000" Dst="0" />
 <file name="AddCars.php" server="119.29.145.13/../var/www/html/pro1/" local="131615178991771127" remote="131615178980000000" Dst="0" />
-<file name="AddFleet.php" server="119.29.145.13/../var/www/html/pro1/" local="131611083611653052" remote="131611083610000000" Dst="0" />
 <file name="AddUsers.php" server="119.29.145.13/../var/www/html/pro1/" local="131615181987069069" remote="131615181970000000" Dst="0" />
 <file name="AddRefule.php" server="119.29.145.13/../var/www/html/pro1/" local="131615175687118019" remote="131615175670000000" Dst="0" />
-<file name="AddDiscounts.php" server="119.29.145.13/../var/www/html/pro1/" local="131615184160191119" remote="131615184140000000" Dst="0" />
-<file name="AddSends.php" server="119.29.145.13/../var/www/html/pro1/" local="131615187835431226" remote="131615187820000000" Dst="0" />
+<file name="AddDiscounts.php" server="119.29.145.13/../var/www/html/pro1/" local="131615210873684083" remote="131615210860000000" Dst="0" />
+<file name="AddSends.php" server="119.29.145.13/../var/www/html/pro1/" local="131615211677958861" remote="131615211660000000" Dst="0" />
 <file name="Login.php" server="119.29.145.13/../var/www/html/pro1/" local="131615189291130323" remote="131615189270000000" Dst="0" />
 <file name="SelectCar.php" server="119.29.145.13/../var/www/html/pro1/" local="131615189871324508" remote="131615189860000000" Dst="0" />
 <file name="selectByUname.php" server="119.29.145.13/../var/www/html/pro1/" local="131615190333336070" remote="131615190320000000" Dst="0" />
@@ -22,4 +21,5 @@
 <file name="selectSent.php" server="119.29.145.13/../var/www/html/pro1/" local="131615191783049931" remote="131615191770000000" Dst="0" />
 <file name="ChangeUser.php" server="119.29.145.13/../var/www/html/pro1/" local="131615201065283465" remote="131615201050000000" Dst="0" />
 <file name="ChangeCar.php" server="119.29.145.13/../var/www/html/pro1/" local="131615197815029641" remote="131615197800000000" Dst="0" />
+<file name="selectNotice.php" server="119.29.145.13/../var/www/html/pro1/" local="131615208944816958" remote="131615208930000000" Dst="0" />
 </dwsync>

@@ -99,13 +99,14 @@ if ($conn->connect_error) {
 }  
   
 $sql = "INSERT INTO `Sends` (`addition`, `title`, `intr`,`info`, `btime`, `etime`) VALUES ('{$addition}', '{$title}','{$intr}', '{$info}', '{$btime}','{$etime}')";
-  
-
-if($conn->query($sql)==true){
-	$arr['status'] = 1;
+ $sql1 = "INSERT INTO `Notices` (`nid`, `uid`, `title`, `info`, `ntime`) VALUES (NULL, '0', '新的礼包通知', '你有可领取的礼包{$title}', '{$dates}')";
+$conn->query("SET AUTOCOMMIT=0");
+if($conn->query($sql)==true&&$conn->query($sql1)==true){
+	$conn->commit();
 	$arr['msg']   = '提交成功';
 	echo json_encode($arr);
 }else{
+	$conn->rollback();
 	$arr['status'] = 0;
 	$arr['msg']   = '提交失败';
 	echo json_encode($arr);
