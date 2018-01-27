@@ -4,43 +4,87 @@ $servername = "localhost";
 $username = "root";  
 $password = "root";  
 $dbname = "Car";  
-if(!isset($_GET['addition'])){  
-    die('赠送 is not define');
+if(!isset($_GET['addition'])){ 
+	$arr['status'] = 0;
+	$arr['msg']   = '赠送 is not define';
+	echo json_encode($arr);
+    die();
 }  
+
 if(!isset($_GET['title'])){  
-    die('优惠标题 is not define');  
+	$arr['status'] = 0;
+	$arr['msg']   = '礼包标题 is not define';
+	echo json_encode($arr);
+    die();  
+}
+if(!isset($_GET['intr'])){ 
+	$arr['status'] = 0;
+	$arr['msg']   = '礼包简介 is not define';
+	echo json_encode($arr);
+    die();  
 }  
 if(!isset($_GET['info'])){  
-    die('优惠内容 is not define');  
+	$arr['status'] = 0;
+	$arr['msg']   = '礼包内容 is not define';
+	echo json_encode($arr);
+    die();  
 }  
 if(!isset($_GET['btime'])){  
-    die('起始日期 is not define');  
+	$arr['status'] = 0;
+	$arr['msg']   = '起始日期 is not define';
+	echo json_encode($arr);
+    die();  
 }  
-if(!isset($_GET['etime'])){  
-    die('截止日期 is not define');  
+if(!isset($_GET['etime'])){ 
+	$arr['status'] = 0;
+	$arr['msg']   = '截止日期 is not define';
+	echo json_encode($arr);
+    die();  
 }  
 
 $addition=$_GET['addition'];
 $title=$_GET['title'];
+$intr=$_GET['intr'];
 $info=$_GET['info'];
 $btime=$_GET['btime'];
 $etime=$_GET['etime'];
 
 
-if(empty($addition)){  
-    die('赠送 is empty');  
+if(empty($addition)){ 
+	$arr['status'] = 0;
+	$arr['msg']   = '赠送 is empty';
+	echo json_encode($arr);
+    die();  
 }  
 if(empty($title)){  
-    die('标题 is empty');
+	$arr['status'] = 0;
+	$arr['msg']   = '提交失败';
+	echo json_encode($arr);
+    die();
 }  
+if(empty($intr)){
+	$arr['status'] = 0;
+	$arr['msg']   = '简介 is empty';
+	echo json_encode($arr);
+	die();
+}
 if(empty($info)){  
-    die('内容 is not empty');    
+	$arr['status'] = 0;
+	$arr['msg']   = '内容 is not empty';
+	echo json_encode($arr);
+    die();    
 }  
 if(empty($btime)){  
-    die('开始时间 is not empty');   
+	$arr['status'] = 0;
+	$arr['msg']   = '开始时间 is not empty';
+	echo json_encode($arr);
+    die();   
 }  
 if(empty($etime)){
-	 die('结束时间 is not empty');   
+	$arr['status'] = 0;
+	$arr['msg']   = '结束时间 is not empty';
+	echo json_encode($arr);
+	die();   
 }
 
 
@@ -48,10 +92,13 @@ if(empty($etime)){
 $conn =new mysqli($servername, $username, $password, $dbname);  
 // 检测连接  
 if ($conn->connect_error) {  
-     die("Connection failed: " . $conn->connect_error);  
+	$arr['status'] = 0;
+	$arr['msg']   = "Connection failed: " . $conn->connect_error;
+	echo json_encode($arr);
+    die();  
 }  
   
-$sql = "INSERT INTO `Sends` (`addition`, `title`, `info`, `btime`, `etime`) VALUES ('{$addition}', '{$title}', '{$info}', '{$btime}','{$etime}')";
+$sql = "INSERT INTO `Sends` (`addition`, `title`, `intr`,`info`, `btime`, `etime`) VALUES ('{$addition}', '{$title}','{$intr}', '{$info}', '{$btime}','{$etime}')";
   
 
 if($conn->query($sql)==true){

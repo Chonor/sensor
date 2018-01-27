@@ -84,7 +84,7 @@ if ($conn->connect_error) {
     die();  
 }  
   
-$sql = "INSERT INTO `Cars` (`cid`, `uid`, `cname`, `age`, `types`) VALUES ('{$cid}', '{$uid}', '{$cname}', '{$age}','{$types}')";
+$sql = "UPDATE Cars SET `uid`='{$uid}', `cname`='{$cname}', `age`='{$age}', `types`='{$types}' where cid='{$cid}'";
   
 
 if($conn->query($sql)==true){

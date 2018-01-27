@@ -4,89 +4,85 @@ $servername = "localhost";
 $username = "root";  
 $password = "root";  
 $dbname = "Car";  
-if(!isset($_GET['discount'])){  
+if(!isset($_GET['uid'])){  
 	$arr['status'] = 0;
-	$arr['msg']   = '折数 is not define';
-	echo json_encode($arr);
-    die();
-}  
-if(!isset($_GET['title'])){ 
-	$arr['status'] = 0;
-	$arr['msg']   = '优惠标题 is not define';
+	$arr['msg']   = 'uid is not define';
 	echo json_encode($arr);
     die();  
 }  
-if(!isset($_GET['intr'])){  
+if(!isset($_GET['uname'])){  
 	$arr['status'] = 0;
-	$arr['msg']   = '优惠简介 is not define';
+	$arr['msg']   = '用户名 is not define';
 	echo json_encode($arr);
     die();  
 }  
-if(!isset($_GET['info'])){  
+if(!isset($_GET['sex'])){  
 	$arr['status'] = 0;
-	$arr['msg']   = '优惠内容 is not define';
+	$arr['msg']   = '性别 is not define';
 	echo json_encode($arr);
     die();  
 }  
-if(!isset($_GET['btime'])){  
+if(!isset($_GET['phone'])){ 
 	$arr['status'] = 0;
-	$arr['msg']   = '起始日期 is not define';
+	$arr['msg']   = '手机 is not define';
 	echo json_encode($arr);
     die();  
 }  
-if(!isset($_GET['etime'])){  
+if(!isset($_GET['email'])){  
 	$arr['status'] = 0;
-	$arr['msg']   = '截止日期 is not define';
+	$arr['msg']   = '邮箱 is not define';
 	echo json_encode($arr);
     die();  
 }  
+if(!isset($_GET['position'])){  
+	$arr['status'] = 0;
+	$arr['msg']   = '地区 is not define';
+	echo json_encode($arr);
+    die();  
+}  
+$uid=$_GET['uid'];
+$uname=$_GET['uname'];
+$sex=$_GET['sex'];
+$email=$_GET['email'];
+$phone=$_GET['phone'];
+$position=$_GET['position'];
 
-$discount=$_GET['discount'];
-$title=$_GET['title'];
-$intr=$_GET['intr'];
-$info=$_GET['info'];
-$btime=$_GET['btime'];
-$etime=$_GET['etime'];
-
-
-if(empty($discount)){  
+if(empty($uid)){  
 	$arr['status'] = 0;
-	$arr['msg']   = '折扣 is empty';
-	echo json_encode($arr);
-    die();  
-}  
-if(empty($title)){  
-	$arr['status'] = 0;
-	$arr['msg']   = '标题 is empty';
-	echo json_encode($arr);
-    die();
-}  
-if(empty($intr)){
-	$arr['status'] = 0;
-	$arr['msg']   = '简介 is empty';
-	echo json_encode($arr);
-	die();
-}
-if(empty($info)){  
-	$arr['status'] = 0;
-	$arr['msg']   = '内容 is not empty';
+	$arr['msg']   = 'uid is empty';
 	echo json_encode($arr);
     die();    
 }  
-if(empty($btime)){  
+if(empty($uname)){  
 	$arr['status'] = 0;
-	$arr['msg']   = '开始时间 is not empty';
+	$arr['msg']   = '用户名 is empty';
 	echo json_encode($arr);
-    die();   
+    die();    
 }  
-if(empty($etime)){
+if(empty($sex)){  
 	$arr['status'] = 0;
-	$arr['msg']   = '结束时间 is not empty';
+	$arr['msg']   = '性别 is empty';
 	echo json_encode($arr);
-	die();   
+    die();
+}  
+if(empty($phone)){  
+	$arr['status'] = 0;
+	$arr['msg']   = '电话 is empty';
+	echo json_encode($arr);
+    die();    
+}  
+if(empty($email)){  
+	$arr['status'] = 0;
+	$arr['msg']   = '邮箱 is empty';
+	echo json_encode($arr);
+    die();    
 }
-
-
+if(empty($position)){  
+	$arr['status'] = 0;
+	$arr['msg']   ='地区 is empty';
+	echo json_encode($arr);
+    die();    
+}  
 // 创建连接  
 $conn =new mysqli($servername, $username, $password, $dbname);  
 // 检测连接  
@@ -94,12 +90,9 @@ if ($conn->connect_error) {
 	$arr['status'] = 0;
 	$arr['msg']   = "Connection failed: " . $conn->connect_error;
 	echo json_encode($arr);
-    die();  
+    die();
 }  
-  
-$sql = "INSERT INTO `Discounts` (`discount`, `title`, `intr`, `info`, `btime`, `etime`) VALUES ('{$discount}', '{$title}', '{$intr}', '{$info}', '{$btime}','{$etime}')";
-  
-
+$sql = "UPDATE Users SET uname='{$uname}', `sex`='{$sex}', `position`='{$position}', `phone`='{$phone}', `email`='{$email}' where  uid={$uid}";
 if($conn->query($sql)==true){
 	$arr['status'] = 1;
 	$arr['msg']   = '提交成功';
@@ -109,6 +102,5 @@ if($conn->query($sql)==true){
 	$arr['msg']   = '提交失败';
 	echo json_encode($arr);
 }
-
 
 ?>  

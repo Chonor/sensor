@@ -4,12 +4,19 @@ $servername = "localhost";
 $username = "root";  
 $password = "root";  
 $dbname = "Car";   
-if(!isset($_GET['cid'])){  
-    die('车牌号 is not define');  
-}  
+if(!isset($_GET['cid'])){ 
+	$arr['status'] = 0;
+	$arr['msg']   = '车牌号 is not define';
+	echo json_encode($arr);
+    die();
+}   
 $cid=$_GET['cid'];
+
 if(empty($cid)){  
-    die('车牌号 is empty');    
+	$arr['status'] = 0;
+	$arr['msg']   = '车牌号 is empty';
+	echo json_encode($arr);
+    die();  
 }  
 
 
@@ -18,7 +25,10 @@ if(empty($cid)){
 $conn =new mysqli($servername, $username, $password, $dbname);  
 // 检测连接  
 if ($conn->connect_error) {  
-    die("Connection failed: " . $conn->connect_error);  
+    $arr['status'] = 0;
+	$arr['msg']   = "Connection failed: " . $conn->connect_error;
+	echo json_encode($arr);
+    die();   
 }  
   
 $sql = "select * from Refuel where cid='{$cid}'";  

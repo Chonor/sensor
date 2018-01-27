@@ -4,29 +4,41 @@ $servername = "localhost";
 $username = "root";  
 $password = "root";  
 $dbname = "Car";   
-if(!isset($_GET['uname'])){  
-    die('用户名 is not define');  
+if(!isset($_GET['uname'])){ 
+	$arr['status'] = 0;
+	$arr['msg']   = '用户名 is not define';
+	echo json_encode($arr);
+    die();  
 }  
-if(!isset($_GET['passwd'])){  
-    die('密码 is not define');  
+if(!isset($_GET['passwd'])){ 
+	$arr['status'] = 0;
+	$arr['msg']   = '密码 is not define';
+	echo json_encode($arr);
+    die();  
 }  
-
 $uname=$_GET['uname'];
 $passwd=$_GET['passwd'];
 
 if(empty($uname)){  
-    die('用户名 is  empty');    
+	$arr['status'] = 0;
+	$arr['msg']   = '用户名 is empty';
+	echo json_encode($arr);
+    die();    
 }  
 if(empty($passwd)){  
-    die('密码 is empty');
+	$arr['status'] = 0;
+	$arr['msg']   = '密码 is empty';
+	echo json_encode($arr);
+    die();
 }  
-
-
 // 创建连接  
 $conn =new mysqli($servername, $username, $password, $dbname);  
 // 检测连接  
 if ($conn->connect_error) {  
-    die("Connection failed: " . $conn->connect_error);  
+    $arr['status'] = 0;
+	$arr['msg']   = "Connection failed: " . $conn->connect_error;
+	echo json_encode($arr);
+    die();  
 }  
   
 $sql = "update Users set passwd='{$passwd}' where uname='{$uname}'";  

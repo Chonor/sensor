@@ -16,7 +16,7 @@ if ($conn->connect_error) {
     die();  
 }  
   
-$sql = "select * from Discounts where btime<= '{$dates}' AND etime>='{$dates}'";  
+$sql = "select * from Sents where btime<= '{$dates}' AND etime>='{$dates}'";  
 $result = $conn->query($sql);  
   
 $arr = array();  

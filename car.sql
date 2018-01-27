@@ -25,8 +25,9 @@ CREATE TABLE Users (
 
 CREATE TABLE Discounts (
     did INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    discount decimal (3,2) NOT NULL,
+    discount decimal (3,2) NOT NULL DEFAULT '0.00',
     title VARCHAR (50) NOT NULL,
+    intr VARCHAR (200) NOT NULL,
     info VARCHAR (1000) NOT NULL,
     btime DATE NOT NULL,
     etime DATE NOT NULL
@@ -34,13 +35,22 @@ CREATE TABLE Discounts (
 
 CREATE TABLE Sends (
     sid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    addition decimal (3,2) NOT NULL,
+    addition decimal (10,2) NOT NULL DEFAULT '0.00',
     title VARCHAR (50) NOT NULL,
+    intr VARCHAR (200) NOT NULL,
     info VARCHAR (1000) NOT NULL,
     btime DATE NOT NULL,
     etime DATE NOT NULL
 )ENGINE = INNODB DEFAULT charset = utf8;
 
+CREATE TABLE Notices (
+    nid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    uid INT NOT NULL,
+    title VARCHAR (50) NOT NULL,
+    info VARCHAR (1000) NOT NULL,
+    ntime DATE NOT NULL,
+    foreign key (uid) references Users(uid) on delete cascade
+)ENGINE = INNODB DEFAULT charset = utf8;
 
 CREATE TABLE Refuel (
     rid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
