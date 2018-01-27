@@ -8,43 +8,43 @@ $dbname = "Car";
 if(!isset($_GET['cid'])){ 
 	$arr['status'] = 0;
 	$arr['msg']   = '车牌号 is not define';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();   
 } 
 if(!isset($_GET['uid'])){  
 	$arr['status'] = 0;
 	$arr['msg']   = '用户id is not define';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();   
 } 
 if(!isset($_GET['types'])){  
 	$arr['status'] = 0;
 	$arr['msg']   = '油品 is not define';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();   
 }  
 if(!isset($_GET['price'])){ 
 	$arr['status'] = 0;
 	$arr['msg']   = '单价 is not define';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();    
 }  
 if(!isset($_GET['count'])){
 	$arr['status'] = 0;
 	$arr['msg']   = '数量 is not define';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();    
 }  
 if(!isset($_GET['dates'])){
 	$arr['status'] = 0;
 	$arr['msg']   = '日期 is not define';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();     
 }  
 if(!isset($_GET['position'])){ 
 	$arr['status'] = 0;
 	$arr['msg']   = '地点 is not define';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();   
 }  
 
@@ -59,44 +59,44 @@ $position=$_GET['position'];
 if(empty($cid)){  
 	$arr['status'] = 0;
 	$arr['msg']   = '车牌号 is empty';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();    
 }  
 if(empty($uid)){  
 	$arr['status'] = 0;
 	$arr['msg']   = '用户id is empty';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();   
 }  
 if(empty($types)){  
 	$arr['status'] = 0;
 	$arr['msg']   = '油品 is empty';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();   
 }  
 if(empty($price)){  
 	$arr['status'] = 0;
 	$arr['msg']   = '单价 is empty';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();   
 }  
 if(empty($count)){  
 	$arr['status'] = 0;
 	$arr['msg']   = '数量 is empty';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();      
 }
 if(empty($dates)){  
 	$arr['status'] = 0;
 	$arr['msg']   = '日期 is empty';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();     
 }
 
 if(empty($position)){  
 	$arr['status'] = 0;
 	$arr['msg']   = '地点 is empty';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();    
 }  
 // 创建连接  
@@ -105,7 +105,7 @@ $conn =new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {  
 	$arr['status'] = 0;
 	$arr['msg']   = "Connection failed: " . $conn->connect_error;
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();  
 }  
 $allprice=$price*$count;
@@ -119,13 +119,13 @@ if($row = $result->fetch_assoc()){
 	if($moneys<$allprice){
 		$arr['status'] = 0;
 		$arr['msg']   = '余额不足,no moneys';
-		echo json_encode($arr);
+		echo json_encode($arr,JSON_UNESCAPED_UNICODE);
 		die();
 	}
 }else{
 	$arr['status'] = 0;
 	$arr['msg']   = '用户不存在,no user';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
 	die();
 }
 
@@ -138,13 +138,13 @@ if($conn->query($sql)==true&&$conn->query($sql1)==true&&$conn->query($sql2)==tru
 	$conn->commit();
 	$arr['status'] = 1;
 	$arr['msg']   = '提交成功,success';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
 
 }else{
 	$conn->rollback();
 	$arr['status'] = 0;
 	$arr['msg']   = '提交失败,fail';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
 }
-
+$conn->close(); 
 ?>  

@@ -12,7 +12,7 @@ $conn =new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {  
     $arr['status'] = 0;
 	$arr['msg']   = "Connection failed: " . $conn->connect_error;
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();  
 }  
   
@@ -27,8 +27,9 @@ while($row = $result->fetch_assoc()) {
         unset($row[$i]);//删除冗余数据  
     }  
     array_push($arr,$row);  
-  
 }  
+echo json_encode($arr,JSON_UNESCAPED_UNICODE);//json编码  
+$conn->close(); 
 
   
 ?>  

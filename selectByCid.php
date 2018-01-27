@@ -7,7 +7,7 @@ $dbname = "Car";
 if(!isset($_GET['cid'])){ 
 	$arr['status'] = 0;
 	$arr['msg']   = '车牌号 is not define';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();
 }   
 $cid=$_GET['cid'];
@@ -15,7 +15,7 @@ $cid=$_GET['cid'];
 if(empty($cid)){  
 	$arr['status'] = 0;
 	$arr['msg']   = '车牌号 is empty';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();  
 }  
 
@@ -27,7 +27,7 @@ $conn =new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {  
     $arr['status'] = 0;
 	$arr['msg']   = "Connection failed: " . $conn->connect_error;
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();   
 }  
   

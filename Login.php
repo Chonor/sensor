@@ -7,13 +7,13 @@ $dbname = "Car";
 if(!isset($_GET['uname'])){ 
 	$arr['status'] = 0;
 	$arr['msg']   = '用户名 is not define';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();  
 }  
 if(!isset($_GET['passwd'])){ 
 	$arr['status'] = 0;
 	$arr['msg']   = '密码 is not define';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();  
 }  
 $uname=$_GET['uname'];
@@ -22,13 +22,13 @@ $passwd=$_GET['passwd'];
 if(empty($uname)){  
 	$arr['status'] = 0;
 	$arr['msg']   = '用户名 is empty';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();    
 }  
 if(empty($passwd)){  
 	$arr['status'] = 0;
 	$arr['msg']   = '密码 is empty';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();
 }  
 
@@ -39,7 +39,7 @@ $conn =new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {  
     $arr['status'] = 0;
 	$arr['msg']   = "Connection failed: " . $conn->connect_error;
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
     die();  
 }  
   
@@ -60,9 +60,10 @@ if(empty($arr)){
 	$conn->close(); 
 	$arr['status'] = 0;
 	$arr['msg']   = '用户不能存在或密码错误';
-	echo json_encode($arr);
+	echo json_encode($arr,JSON_UNESCAPED_UNICODE);
+	$conn->close(); 
 }else{
-//print_r($arr);  
+//print_r($arr,JSON_UNESCAPED_UNICODE);  
 echo json_encode($arr,JSON_UNESCAPED_UNICODE);//json编码  
 $conn->close(); 
 }
